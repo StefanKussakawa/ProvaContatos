@@ -1,5 +1,6 @@
 package com.prova.sistemaContatos.email.controller;
 
+import com.prova.sistemaContatos.contact.Contact;
 import com.prova.sistemaContatos.email.Email;
 import com.prova.sistemaContatos.email.repository.EmailRepository;
 import com.prova.sistemaContatos.user.User;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/emails")
 public class EmailController {
@@ -34,4 +36,8 @@ public class EmailController {
         return emailRepository.findAll();
     }
 
+    @GetMapping("/contact/{id}")
+    public List<Email> getAllEmailsOfUserById(@PathVariable Long id) {
+        return emailRepository.findByContactId(id);
+    }
 }

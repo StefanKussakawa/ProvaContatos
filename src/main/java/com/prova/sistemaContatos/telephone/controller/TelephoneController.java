@@ -1,5 +1,6 @@
 package com.prova.sistemaContatos.telephone.controller;
 
+import com.prova.sistemaContatos.contact.Contact;
 import com.prova.sistemaContatos.telephone.Telephone;
 import com.prova.sistemaContatos.telephone.repository.TelephoneRepository;
 import com.prova.sistemaContatos.user.User;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping(value = "/telephones")
 public class TelephoneController {
@@ -34,4 +36,8 @@ public class TelephoneController {
         return telephoneRepository.findAll();
     }
 
+    @GetMapping("/contact/{id}")
+    public List<Telephone> getAllTelephonesOfUserById(@PathVariable Long id) {
+        return telephoneRepository.findByContactId(id);
+    }
 }
